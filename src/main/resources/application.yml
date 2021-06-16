@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: "my-service"
+  kafka:
+    bootstrap-servers: "localhost:9092"
+    producer:
+      # Important DeadLetterPublishingRecoverer producer settings !!!
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+    consumer:
+      group-id: "event_consumer"
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+        spring.json.value.default.type: com.rbiedrawa.kafka.app.events.Event
+    streams:
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      application-id: "event_kstream"
+      client-id: ${spring.kafka.streams.application-id}
+      properties:
+        commit.interval.ms: 10
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
+        spring.json.value.default.type: com.rbiedrawa.kafka.app.events.Event
+        default.deserialization.exception.handler: org.springframework.kafka.streams.RecoveringDeserializationExceptionHandler
