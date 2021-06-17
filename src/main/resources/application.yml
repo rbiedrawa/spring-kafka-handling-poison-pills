@@ -4,7 +4,7 @@ spring:
   kafka:
     bootstrap-servers: "localhost:9092"
     producer:
-      # Important DeadLetterPublishingRecoverer producer settings !!!
+      # DeadLetterPublishingRecoverer producer settings
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
     consumer:
