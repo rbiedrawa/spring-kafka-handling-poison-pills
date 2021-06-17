@@ -1,6 +1,6 @@
 # Protecting against poison pills in Apache Kafka applications (demo)
 
-This sample project demonstrates how to protect Kafka application against poison pills (Deserialization exceptions).
+This sample project demonstrates how to protect Apache Kafka applications against poison pills (Deserialization exceptions).
 
 Kafka Consumer and KStream configuration included.
 
