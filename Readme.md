@@ -6,7 +6,7 @@ Kafka Consumer and KStream configuration included.
 
 ## Getting Started
 
-### Prerequisite
+### Prerequisites
 
 * Java 11
 * Docker
